@@ -1,0 +1,17 @@
+rules = [
+    ('code_start',               'CODE_START'),
+    ('n\"(\\.|[^\"])*\"',        'EXPR'),
+    ('\/\*',                     'COMMENT_START'),
+    ('\*\/',                     'COMMENT_END'),
+    ('toint \"(\\.|[^\"])*\"',   'TOINT'),
+    ('var',                      'VAR'),
+    ('\"(\\.|[^\"])*\"',         'STRING'),
+    ('\(',                       'LP'),
+    ('\)',                       'RP'),
+    ('=',                        'EQUALS'),
+    (':',                        'COLON'),
+    (';',                        'LINE_END'),
+    ('[a-zA-Z_]\w+',             'COMMAND'),
+    ('[a-zA-Z_]',                'LETTER'),
+    ('.',                        'ANY'),
+]
