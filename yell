@@ -25,5 +25,6 @@ def _start_program():
 
 try:
     _start_program()
-except:
+except e:
+    print("\nSomething went wrong (or you pressed Ctrl+C).")
     sys.exit(1)
