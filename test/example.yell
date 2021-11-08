@@ -14,6 +14,24 @@ code_start;
     println '{var1} {var2}';
     println '';
 
+/* if and bool test */
+    if b`n'6' > n'5'`: println "Booleans and if statements seem to be working as expected.";
+    println "";
+
+/* repeat test */
+    repeat n'5': println "If this line was repeated 5 times, repeat statements are working as expected.";
+    var "xyz": n'1';
+
+/* while test */
+    while b`n"{xyz}" <= n"5"`: println "If this line was repeated 5 times, while statements are working as expected."
+      && var "xyz": n'{xyz}+1';
+    println "";
+
+/* alias test */
+    alias "alias_test": println "Aliases seem to be working as expected.";
+    a "alias_test";
+    println "";
+
 /* expressions test */
     print '5 + 5 = ';
     println n'5 + 5';
@@ -50,9 +68,6 @@ code_start;
     import 'imports/import_test1.yell';
     println "If 'This is an import.' got printed just now, imports are working as expected.";
     println '';
-
-/* if and bool test */
-    if b`n'6' > n'5'`: println "Booleans and if statements seem to be working as expected.";
 
 /* end, and another read test ;) */
     read 'Press ENTER to exit: ' 'enter_input';
