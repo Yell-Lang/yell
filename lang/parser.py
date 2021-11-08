@@ -33,7 +33,6 @@ def statements(_input):
                 continue
             elif comment == True:
                 continue
-
             if tok.type != 'LINE_END':
                 statement.append(tok)
             else:
@@ -47,6 +46,8 @@ def statements(_input):
 def tok_to_obj(tok):
     if tok.type == 'STRING':
         return parse_string(tok.val)
+    if tok.type == 'BOOL':
+        return parse_bool(tok.val)
     elif tok.type == 'EXPR':
         return evaluate(tok.val[2:-1])
     elif tok.type == 'TOINT':
@@ -59,15 +60,55 @@ def parse_string(_str):
 
     return new_str
 
+def parse_bool(_bool):
+    _bool = _bool[2:-1]
+    rules = [
+        ('\"(\\.|[^\"])*\"',    'STRING'),
+        ('n\"(\\.|[^\"])*\"',   'EXPR'),
+        ('<=|>=|!=|<|>|=',      'OPER'),
+    ]
+    lx = Lexer(rules, skip_whitespace=True)
+    lx.input(_bool)
+    _compare = []
+    _comparison = ''
+    for tok in lx.tokens():
+        if tok.type == 'STRING' or tok.type == 'EXPR':
+                _compare.append(tok_to_obj(tok))
+        elif tok.type == 'OPER':
+            _comparison = tok.val
+        else:
+            print(f'Looks like {_bool[1:-1]} is an invalid boolean.')
+            sys.exit(1)
+
+    if _comparison == '<=':
+        if _compare[0] <= _compare[1]:
+            return 'True'
+    elif _comparison == '>=':
+        if _compare[0] >= _compare[1]:
+            return 'True'
+    elif _comparison == '!=':
+        if _compare[0] != _compare[1]:
+            return 'True'
+    elif _comparison == '<':
+        if _compare[0] < _compare[1]:
+            return 'True'
+    elif _comparison == '>':
+        if _compare[0] > _compare[1]:
+            return 'True'
+    elif _comparison == '=':
+        if _compare[0] == _compare[1]:
+            return 'True'
+        return 'False'
+
 def _run(_input):
     statement_i = 1
     for statement in statements(preprocessor(_input)):
         for i, tok in enumerate(statement):
             if tok.val == 'println':
-                print(tok_to_obj(statement[i+1]))
+                print(str(tok_to_obj(statement[i+1])))
                 continue
             elif tok.val == 'print':
-                print(str(tok_to_obj(statement[i+1]), end=''))
+                print(str(tok_to_obj(statement[i+1])), end='')
                 continue
             elif tok.val == 'var':
                 var_name = tok_to_obj(statement[i+1])

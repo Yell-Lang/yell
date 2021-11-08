@@ -1,10 +1,13 @@
 rules = [
     ('code_start',               'CODE_START'),
     ('n\"(\\.|[^\"])*\"',        'EXPR'),
+    ('b\'(\\.|[^\'])*\'',        'BOOL'),
     ('\/\*',                     'COMMENT_START'),
     ('\*\/',                     'COMMENT_END'),
     ('toint \"(\\.|[^\"])*\"',   'TOINT'),
     ('var',                      'VAR'),
+    ('if',                       'IF'),
+    ('alias \w: *$',             'ALIAS'),
     ('\"(\\.|[^\"])*\"',         'STRING'),
     ('\(',                       'LP'),
     ('\)',                       'RP'),
@@ -12,6 +15,5 @@ rules = [
     (':',                        'COLON'),
     (';',                        'LINE_END'),
     ('[a-zA-Z_]\w+',             'COMMAND'),
-    ('[a-zA-Z_]',                'LETTER'),
     ('.',                        'ANY'),
 ]

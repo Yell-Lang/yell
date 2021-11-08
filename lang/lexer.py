@@ -107,3 +107,15 @@ class Lexer(object):
             tok = self.token()
             if tok is None: break
             yield tok
+
+# Run lexer if executed
+if __name__ == '__main__':
+    try:
+        import rules
+
+        lx = Lexer(rules.rules, skip_whitespace=True)
+        lx.input(sys.argv[1])
+        for tok in lx.tokens():
+            print(tok)
+    except LexerError as err:
+        print('LexerError at position %s' % err.pos)
