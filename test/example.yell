@@ -2,57 +2,57 @@
 
 code_start;
 
-println b'n"6" > n"5"';
-
 /* This is the main test suite of Yell; */
 
 /* intro */
-    println "Hi! This is a sample test of Yell.";
-    println "";
+    println 'Hi! This is a sample test of Yell.';
+    println '';
 
 /* variables test */
-    var "var1": "Variables are";
-    var "var2": "working as expected.";
-    println "{var1} {var2}";
-    println "";
+    var 'var1': 'Variables are';
+    var 'var2': 'working as expected.';
+    println '{var1} {var2}';
+    println '';
 
 /* expressions test */
-    print "5 + 5 = ";
-    println n"5 + 5";
+    print '5 + 5 = ';
+    println n'5 + 5';
     println "If the above line said '5 + 5 = 10', expressions (n strings) are working as expected.";
-    println "";
+    println '';
 
 /* read test */
-    read "You can type anything here: " "sample_input";
-    print "If you find what you wrote in this line, reading input (read) is working as expected: ";
-    println "{sample_input}";
-    println "";
+    read 'You can type anything here: ' 'sample_input';
+    print 'If you find what you wrote in this line, reading input (read) is working as expected: ';
+    println '{sample_input}';
+    println '';
 
 /* toint test */
-    read "You can type any expression here: " "sample_input";
-    print "If you find the solution to the expression in this line, solving of expressions in variables (toint) is working as expected: ";
-    println toint "{sample_input}";
-    println "Hello world!";
-    println "";
+    read 'You can type any expression here: ' 'sample_input';
+    print 'If you find the solution to the expression in this line, solving of expressions in variables is working as expected: ';
+    println n'{sample_input}';
+    println '';
 
 /* sleep test */
-    println "Sleeping for 2 seconds.";
-    sleep n"2";
+    println 'Sleeping for 2 seconds.';
+    sleep n'2';
     println "If the program halted for 2 seconds, sleep's working as expected.";
-    println "";
+    println '';
 
 /* comments test */
-    println "If there was no error just now, comments (/* */) are working as expected.";
-    println "";
+    println 'If there was no error just now, comments (/* */) are working as expected.';
+    println '';
 
 /* externs test */
     system "echo 'Running OS commands (system) is working as expected.'";
-    println "";
+    println '';
 
 /* imports test */
-    import "imports/import_test1.yell";
+    import 'imports/import_test1.yell';
     println "If 'This is an import.' got printed just now, imports are working as expected.";
-    println "";
+    println '';
+
+/* if and bool test */
+    if b`n'6' > n'5'`: println "Booleans and if statements seem to be working as expected.";
 
 /* end, and another read test ;) */
-    read "Press ENTER to exit: " "enter_input";
+    read 'Press ENTER to exit: ' 'enter_input';
