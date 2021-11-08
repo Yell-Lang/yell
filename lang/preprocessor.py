@@ -6,7 +6,7 @@ from pathlib import Path
 def preprocessor(_code):
     new_code = _code
     for i, line in enumerate(new_code):
-        for _import in re.findall(r'import "(.*)";', line):
+        for _import in re.findall(r'import "(.*)"|\'(.*)\';', line):
             _path = os.path.join(os.getcwd(), _import)
             try:
                 with open(_path) as f:
