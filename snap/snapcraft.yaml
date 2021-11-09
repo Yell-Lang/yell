@@ -1,0 +1,23 @@
+name: yell
+base: core20
+version: '0.0.1'
+summary: A simple language for new programmers and a toy language ;)
+description: |
+  Yell is an extremely simple language for new programmers. This is
+  a Python implementation of it, and while it isn't the fastest, that's
+  not it's intended purpose. It's lightweight and extremely simple to use.
+  It only has one dependency, Python (which is included in this snap). It
+  also provides limited integration with Python.
+grade: stable
+confinement: devmode
+
+apps:
+  yell:
+    command: yell
+
+parts:
+  yell:
+    plugin: dump
+    source: .
+    stage-packages:
+      - python3
