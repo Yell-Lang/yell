@@ -1,8 +1,8 @@
 rules = [
     ('code_start',              'CODE_START'),
+    ('b`(\\.|[^\`])*\`',        'BOOL'),
     ('n\"(\\.|[^\"])*\"',       'EXPR'),
     ('n\'(\\.|[^\'])*\'',       'EXPR'),
-    ('b`(\\.|[^\`])*\`',        'BOOL'),
     ('\/\*',                    'COMMENT_START'),
     ('\*\/',                    'COMMENT_END'),
     ('var',                     'VAR'),

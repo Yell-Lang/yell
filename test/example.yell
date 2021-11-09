@@ -15,27 +15,37 @@ code_start;
     println '';
 
 /* if and bool test */
-    if b`n'6' > n'5'`: println "Booleans and if statements seem to be working as expected.";
-    println "";
+    if b`n'6' > n'5'`: println 'Booleans and if statements seem to be working as expected.';
+    println '';
 
 /* repeat test */
-    repeat n'5': println "If this line was repeated 5 times, repeat statements are working as expected.";
-    var "xyz": n'1';
+    repeat n'5': println 'If this line was repeated 5 times, repeat statements are working as expected.';
+    println '';
 
 /* while test */
-    while b`n"{xyz}" <= n"5"`: println "If this line was repeated 5 times, while statements are working as expected."
-      && var "xyz": n'{xyz}+1';
-    println "";
+    var 'counter': n'1';
+    while b`n'{counter}' <= n'2'`: println 'If this line was repeated 2 times, while statements are working as expected.'
+      && var 'counter': n'{counter}+1';
+    println '';
 
 /* alias test */
-    alias "alias_test": println "Aliases seem to be working as expected.";
-    a "alias_test";
-    println "";
+    alias 'alias_test': println 'Aliases seem to be working as expected.';
+    a 'alias_test';
+    println '';
+
+/* python test */
+    python 'print("Hello from Python! If you see this line, running Python code from Yell is working as expected.")';
+    println '';
 
 /* expressions test */
     print '5 + 5 = ';
     println n'5 + 5';
     println "If the above line said '5 + 5 = 10', expressions (n strings) are working as expected.";
+    println '';
+
+/* global libs test */
+    import '<sample_lib.yell>';
+    a 'sample_lib';
     println '';
 
 /* read test */
@@ -44,7 +54,7 @@ code_start;
     println '{sample_input}';
     println '';
 
-/* toint test */
+/* expr test */
     read 'You can type any expression here: ' 'sample_input';
     print 'If you find the solution to the expression in this line, solving of expressions in variables is working as expected: ';
     println n'{sample_input}';
@@ -62,11 +72,6 @@ code_start;
 
 /* externs test */
     system "echo 'Running OS commands (system) is working as expected.'";
-    println '';
-
-/* imports test */
-    import 'imports/import_test1.yell';
-    println "If 'This is an import.' got printed just now, imports are working as expected.";
     println '';
 
 /* end, and another read test ;) */

@@ -25,6 +25,8 @@ def _start_program():
 
 try:
     _start_program()
-except e:
-    print("\nSomething went wrong (or you pressed Ctrl+C).")
+except KeyboardInterrupt:
+    sys.exit(1)
+except Exception as e:
+    print("Something went wrong.")
     sys.exit(1)

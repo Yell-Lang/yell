@@ -1,1 +1,3 @@
-if
+code_start;
+
+alias 'sample_lib': println 'Global libraries are working as expected.';

@@ -50,7 +50,16 @@ def tok_to_obj(tok):
     if tok.type == 'BOOL':
         return parse_bool(tok.val)
     elif tok.type == 'EXPR':
-        return evaluate(parse_string('"' + tok.val[2:-1] + '"'))
+        return parse_int(tok)
+
+def parse_int(tok):
+    _number = parse_string('"' + tok.val[2:-1] + '"')
+
+    try:
+        return evaluate(_number)
+    except ValueError:
+        print(f"Hmm, looks like '{_number}' isn't a number.")
+        sys.exit(2)
 
 def parse_string(_str):
     new_str = _str[1:-1]
@@ -64,8 +73,9 @@ def parse_bool(_bool):
     rules = [
         ('\"(\\.|[^\"])*\"',    'STRING'),
         ('\'(\\.|[^\'])*\'',    'STRING'),
-        ('true',                'TRUE'),
-        ('false',               'FALSE'),
+        ('{.*}',                'BOOL_VAR'),
+        ('True',                'TRUE'),
+        ('False',               'FALSE'),
         ('n\"(\\.|[^\"])*\"',   'EXPR'),
         ('n\'(\\.|[^\'])*\'',   'EXPR'),
         ('<=|>=|!=|<|>|=',      'OPER'),
@@ -80,6 +90,8 @@ def parse_bool(_bool):
                 return True
             elif tok.type == 'FALSE':
                 return False
+            elif tok.type == 'BOOL_VAR':
+                return _vars[tok.val[1:-1]]
             elif tok.type == 'STRING' or tok.type == 'EXPR':
                 _compare.append(tok_to_obj(tok))
             elif tok.type == 'OPER':
@@ -176,6 +188,9 @@ def _run(_input):
                     else:
                         break
                 break
+            elif tok.val == 'python':
+                exec(tok_to_obj(statement[i+1]), {'yell_vars': _vars, 'os': os})
+                break
             elif tok.val == 'alias':
                 alias_statements = ['code_start;\n']
                 for alias_i, alias_tok in enumerate(statement[i+3:]):
@@ -189,3 +204,5 @@ def _run(_input):
             elif tok.val == 'system':
                 os.system(tok_to_obj(statement[i+1]))
                 break
+            else:
+                print(f"Hmm, not sure what you mean by '{tok.val}' in this context.")
