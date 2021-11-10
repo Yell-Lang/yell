@@ -32,8 +32,8 @@
 
 [![Yell Screenshot][product-screenshot]](https://github.com/Yell-Lang/yell)
 
-Yell is an extremely simple language for new programmers. This is
-a Python implementation of it, and while it isn't the fastest,
+Yell is an extremely simple language for new programmers. This is a
+Python implementation of it, and while it isn't the fastest,
 that's not it's intended purpose. It's lightweight and extremely simple to use.
 It only has one dependency, Python. It also provides limited integration with Python.
 It has support for VS Code with an extension (you can search for 'Yell' in the marketplace and scroll down to select 'Yell - VS Code').
