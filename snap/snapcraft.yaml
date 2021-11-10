@@ -1,6 +1,6 @@
 name: yell
 base: core20
-version: '0.0.1'
+version: '0.1.1'
 summary: A simple language for new programmers and a toy language ;)
 description: |
   Yell is an extremely simple language for new programmers. This is
