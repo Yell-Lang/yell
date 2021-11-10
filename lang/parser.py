@@ -2,7 +2,7 @@
 
 import sys, re, time, os
 
-from lang.lexer import Lexer, LexerError
+from lang.lexer import Lexer, LexerError, Token
 from lang.rules import rules
 from lang.preprocessor import preprocessor
 from lang.expr import evaluate
@@ -22,6 +22,10 @@ def statements(_input):
     try:
         statement = []
         comment = False
+        _python = False
+
+        _python_code = []
+
         for tok in lx.tokens():
             if tok.type == 'COMMENT_START':
                 comment = True
@@ -29,11 +33,9 @@ def statements(_input):
             elif tok.type == 'COMMENT_END':
                 comment = False
                 continue
-            elif tok.type == 'COMMENT_END':
-                comment = False
-                continue
             elif comment == True:
                 continue
+
             if tok.type != 'LINE_END':
                 statement.append(tok)
             else:
@@ -62,7 +64,7 @@ def parse_int(tok):
         sys.exit(2)
 
 def parse_string(_str):
-    new_str = _str[1:-1]
+    new_str = _str[1:-1].replace('\\', '')
     for _var in re.findall(r"{.*?}", new_str):
         new_str = new_str.replace(_var, str(_vars[_var[1:-1]]))
 
@@ -71,14 +73,14 @@ def parse_string(_str):
 def parse_bool(_bool):
     _bool = _bool[2:-1]
     rules = [
-        ('\"(\\.|[^\"])*\"',    'STRING'),
-        ('\'(\\.|[^\'])*\'',    'STRING'),
-        ('{.*}',                'BOOL_VAR'),
-        ('True',                'TRUE'),
-        ('False',               'FALSE'),
-        ('n\"(\\.|[^\"])*\"',   'EXPR'),
-        ('n\'(\\.|[^\'])*\'',   'EXPR'),
-        ('<=|>=|!=|<|>|=',      'OPER'),
+        ('\"(\\\\.|[^\\\"])*\"',    'STRING'),
+        ("\'(\\\\.|[^\\\'])*\'",    'STRING'),
+        ('{.*}',                    'BOOL_VAR'),
+        ('True',                    'TRUE'),
+        ('False',                   'FALSE'),
+        ('n\"(\\\\.|[^\\\"])*\"',   'EXPR'),
+        ('n\'(\\\\.|[^\\\'])*\'',   'EXPR'),
+        ('<=|>=|!=|<|>|=',          'OPER'),
     ]
     lx = Lexer(rules, skip_whitespace=True)
     lx.input(_bool)

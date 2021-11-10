@@ -34,13 +34,13 @@ code_start;
     println '';
 
 /* python test */
-    python 'print("Hello from Python! If you see this line, running Python code from Yell is working as expected.")';
+    python 'print(\'Hello from Python! If you see this line, running Python code from Yell is working as expected.\')';
     println '';
 
 /* expressions test */
     print '5 + 5 = ';
     println n'5 + 5';
-    println "If the above line said '5 + 5 = 10', expressions (n strings) are working as expected.";
+    println 'If the above line said \'5 + 5 = 10\', expressions (n strings) are working as expected.';
     println '';
 
 /* global libs test */
@@ -63,7 +63,7 @@ code_start;
 /* sleep test */
     println 'Sleeping for 2 seconds.';
     sleep n'2';
-    println "If the program halted for 2 seconds, sleep's working as expected.";
+    println 'If the program halted for 2 seconds, sleep\'s working as expected.';
     println '';
 
 /* comments test */
@@ -71,7 +71,7 @@ code_start;
     println '';
 
 /* externs test */
-    system "echo 'Running OS commands (system) is working as expected.'";
+    system 'echo \'Running OS commands (system) is working as expected.\'';
     println '';
 
 /* end, and another read test ;) */
