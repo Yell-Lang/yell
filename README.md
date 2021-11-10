@@ -50,7 +50,7 @@ It has support for VS Code with an extension (you can search for 'Yell' in the m
 - [x] While statements
 - [x] Basic Python integration
 - [x] Global libraries
-
+- [x] Support for escapes in strings
 
 See the [open issues](https://github.com/Yell-Lang/yell/issues) for a full list of proposed features (and known issues).
 
