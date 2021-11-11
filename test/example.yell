@@ -48,6 +48,10 @@ code_start;
     a 'sample_lib';
     println '';
 
+/* local imports test */
+    import 'imports/import_test1.yell';
+    println '';
+
 /* read test */
     read 'You can type anything here: ' 'sample_input';
     print 'If you find what you wrote in this line, reading input (read) is working as expected: ';

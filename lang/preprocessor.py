@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
 import re, sys, os
-from pathlib import Path
 
-def preprocessor(_code):
+def preprocessor(_code, **kwargs):
+    script_dirname = os.getcwd()
+
+    if 'file' in kwargs:
+        script_dirname = os.path.dirname(kwargs['file'])
+
     new_code = _code
     for i, line in enumerate(new_code):
         for _regex in [r'import "(.*)"', r"import '(.*)'"]:
             for _import in re.findall(_regex, line):
-                _path = os.path.join(os.getcwd(), _import)
+                _path = os.path.join(script_dirname, _import)
 
                 for _global_lib in re.findall(r'<(.*)>', _import):
                     _path = os.path.join(sys.path[0], 'libs', _global_lib)

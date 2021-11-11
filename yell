@@ -19,7 +19,7 @@ def _start_program():
         if os.path.exists(sys.argv[1]):
             with open(sys.argv[1]) as f:
                 _input = f.readlines()
-                _run(_input)
+                _run(_input, file=sys.argv[1])
         else:
             print(f'The file {sys.argv[1]} doesn\'t seem to exist.')
 

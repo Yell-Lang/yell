@@ -126,9 +126,14 @@ def parse_bool(_bool):
 
     return False
 
-def _run(_input):
+def _run(_input, **kwargs):
+    if 'file' in kwargs:
+        _vars['__file__'] = kwargs['file']
+        _input = preprocessor(_input, file=_vars['__file__'])
+    else:
+        _input = preprocessor(_input)
     statement_i = 1
-    for statement in statements(preprocessor(_input)):
+    for statement in statements(_input):
         for i, tok in enumerate(statement):
             if tok.val == 'a':
                 try:
